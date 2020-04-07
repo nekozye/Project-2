@@ -62,6 +62,7 @@ public class GridNode implements Comparable<GridNode>{
         return adjacent[direction.getValue()];
     }
 
+
     @Override
     public int compareTo(GridNode o) {
         return nodeVal.compareTo(o.nodeVal);

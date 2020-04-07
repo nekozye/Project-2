@@ -108,6 +108,45 @@ public class GridGraph {
         return GridNode.GridDirection.ERR;
     }
 
+    public HashMap<GridNode.GridDirection, GridNode> getSides(final GridNode first) {
+        HashMap<GridNode.GridDirection, GridNode> sideMap = new HashMap<GridNode.GridDirection, GridNode>();
+
+
+        Coords gridcoords = getCoord(first);
+        if(gridcoords.x-1 >= 0)
+        {
+            sideMap.put(GridNode.GridDirection.LEFT,grid[gridcoords.x-1][gridcoords.y]);
+        }
+        if(gridcoords.x+1 < this.grid.length )
+        {
+            sideMap.put(GridNode.GridDirection.RIGHT,grid[gridcoords.x+1][gridcoords.y]);
+        }
+        if(gridcoords.y-1 >= 0)
+        {
+            sideMap.put(GridNode.GridDirection.TOP,grid[gridcoords.x][gridcoords.y-1]);
+        }
+        if(gridcoords.y+1 < this.grid[gridcoords.x].length)
+        {
+            sideMap.put(GridNode.GridDirection.BOTTOM,grid[gridcoords.x][gridcoords.y+1]);
+        }
+
+        return sideMap;
+    }
+
+
+    private Coords getCoord(final GridNode gnd)
+    {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++)
+            {
+                if(grid[i][j].equals (gnd))
+                {
+                    return new Coords(i,j);
+                }
+            }
+        }
+        return null;
+    }
 
     private HashMap<GridNode,Coords> getCoords(List<GridNode> gnd)
     {
